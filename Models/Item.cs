@@ -26,7 +26,6 @@ namespace Floral.Models
         public DateTime updateTime { get; set; }
         public ICollection<Inventory>Inventories { get; set; }
         public ICollection<Item_ItemGroup>Item_ItemGroups { get; set; }
-        public ICollection<PackageItem>packageItems { get; set; }
         public ICollection<ItemTag>ItemTags { get; set; }
         public ICollection<OrderItem>OrderItems { get; set; }
         public ICollection<ShoppingCardItem>ShoppingCardItems { get; set; }
