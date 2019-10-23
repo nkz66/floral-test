@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Floral.Models
 {
-    public class Item_ItemGroup
+    public class ItemMmItemGroup
     {
         public int ID { get; set; }
         public Item item { get; set; }
