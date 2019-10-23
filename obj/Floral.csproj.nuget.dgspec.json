@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "D:\\asp.net\\Floral\\Floral.csproj": {}
+    "C:\\keatkeat\\my projects\\asp.net core\\2.2\\floral-test\\Floral.csproj": {}
   },
   "projects": {
-    "D:\\asp.net\\Floral\\Floral.csproj": {
+    "C:\\keatkeat\\my projects\\asp.net core\\2.2\\floral-test\\Floral.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\asp.net\\Floral\\Floral.csproj",
+        "projectUniqueName": "C:\\keatkeat\\my projects\\asp.net core\\2.2\\floral-test\\Floral.csproj",
         "projectName": "Floral",
-        "projectPath": "D:\\asp.net\\Floral\\Floral.csproj",
-        "packagesPath": "C:\\Users\\ngkah\\.nuget\\packages\\",
-        "outputPath": "D:\\asp.net\\Floral\\obj\\",
+        "projectPath": "C:\\keatkeat\\my projects\\asp.net core\\2.2\\floral-test\\Floral.csproj",
+        "packagesPath": "C:\\Users\\keatk\\.nuget\\packages\\",
+        "outputPath": "C:\\keatkeat\\my projects\\asp.net core\\2.2\\floral-test\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\ngkah\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\keatk\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -60,10 +60,16 @@
             }
           },
           "imports": [
-            "net461"
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
           ],
           "assetTargetFallback": true,
-          "warn": true
+          "warn": true,
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\3.0.100\\RuntimeIdentifierGraph.json"
         }
       }
     }

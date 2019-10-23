@@ -7,5 +7,6 @@ namespace Floral.Models
 {
     public class DeliveryTime
     {
+        
     }
 }

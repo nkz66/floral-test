@@ -9,6 +9,6 @@ namespace Floral.Models
     {
         public int id { get; set; }
         public string name { get; set; }
-        public ICollection<Item_ItemGroup>Item_ItemGroups { get; set; }
+        public ICollection<ItemMmItemGroup>Item_ItemGroups { get; set; }
     }
 }
