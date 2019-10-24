@@ -7,11 +7,11 @@ namespace Floral.Models
 {
     public class MessageCard
     {
-        public int ID{ get; set; }
-            public Tag place{ get; set; }
-            public Tag recipient{ get; set; }
-            public long message{ get; set; }
-        public DateTime createTime { get; set; }
-        public DateTime updateTime { get; set; }
+        public int Id{ get; set; }
+        public string place{get;set;}
+        public string recipient{get; set;}
+        public string message{ get; set; }
+        public DateTimeOffset createDateTime { get; set; }
+        public DateTimeOffset updateDateTime { get; set; }
     }
 }

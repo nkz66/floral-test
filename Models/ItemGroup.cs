@@ -7,8 +7,10 @@ namespace Floral.Models
 {
     public class ItemGroup
     {
-        public int id { get; set; }
+        public int Id { get; set; }
         public string name { get; set; }
-        public ICollection<ItemMmItemGroup>Item_ItemGroups { get; set; }
+        public List<ItemMmItemGroup>ItemMmItemGroups { get; set; }
+        public DateTimeOffset createDateTime { get; set; }
+        public DateTimeOffset updateDateTime { get; set; }
     }
 }

@@ -7,11 +7,12 @@ namespace Floral.Models
 {
     public class ShoppingCardItem
     {
-        public int ID { get; set; }
+        public int Id { get; set; }
         public int quantity { get; set; }
+        public int itemId { get; set; }
         public Item item { get; set; }
         public ShoppingCard ShoppingCard { get; set; }
-        public DateTime createTime { get; set; }
-        public DateTime updateTime { get; set; }
+        public DateTimeOffset createDateTime { get; set; }
+        public DateTimeOffset updateDateTime { get; set; }
     }
 }

@@ -7,10 +7,10 @@ namespace Floral.Models
 {
     public class TagType
     {
-        public int ID{ get; set; }
+        public int Id{ get; set; }
         public string name { get; set; }
-        public ICollection<Tag>tags { get; set; }
-        public DateTime createTime { get; set; }
-        public DateTime updateTime { get; set; }
+        public List<Tag>tags { get; set; }
+        public DateTimeOffset createDateTime { get; set; }
+        public DateTimeOffset updateDateTime { get; set; }
     }
 }

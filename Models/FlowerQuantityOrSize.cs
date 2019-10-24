@@ -7,11 +7,14 @@ namespace Floral.Models
 {
     public class FlowerQuantityOrSize
     {
-            public int ID { get; set; }
-            public Boolean isQuantity { get; set; }
-            public Boolean isSize { get; set; }
+            public int Id { get; set; }
+            public bool isQuantity { get; set; }
+            public bool isSize { get; set; }
             public int quantity { get; set; }
             public int size { get; set; }
+            public int PackageId { get; set; }
             public FlowerPackage flowerPackage { get; set; }
+            public DateTimeOffset createDateTime { get; set; }
+            public DateTimeOffset updateDateTime { get; set; }
     }
 }

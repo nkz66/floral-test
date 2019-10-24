@@ -7,12 +7,13 @@ namespace Floral.Models
 {
     public class FlowerPackage
     {
-        public int ID{ get; set; }
+        public int Id{ get; set; }
+        public int PackageTypeId{ get; set; }
         public  PackageType packageType{ get; set; }
         
-        public ICollection<PackageItem>PackageItems{ get; set; }
-        public ICollection<FlowerQuantityOrSize>FlowerQuantityOrSizes{ get; set; }
-        public DateTime createTime { get; set; }
-        public DateTime updateTime { get; set; }
+        public List<PackageItem>PackageItems{ get; set; }
+        public List<FlowerQuantityOrSize>FlowerQuantityOrSizes{ get; set; }
+        public DateTimeOffset createDateTime { get; set; }
+        public DateTimeOffset updateDateTime { get; set; }
     }
 }

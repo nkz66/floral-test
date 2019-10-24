@@ -7,5 +7,13 @@ namespace Floral.Models
 {
     public class Driver
     {
+            public int Id{ get; set; }
+            public string name{ get; set; }
+            public string password{ get; set; }
+            public string email{ get; set; }
+            public string phoneNumber{ get; set; }
+            public List<Delivery>deliveries{ get; set; }
+            public DateTimeOffset createTime { get; set; }
+            public DateTimeOffset updateTime { get; set; }
     }
 }
