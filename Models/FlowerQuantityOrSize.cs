@@ -13,7 +13,7 @@ namespace Floral.Models
             public int quantity { get; set; }
             public int size { get; set; }
             public int PackageId { get; set; }
-            public FlowerPackage flowerPackage { get; set; }
+            public FlowerPackage FlowerPackage { get; set; }
             public DateTimeOffset createDateTime { get; set; }
             public DateTimeOffset updateDateTime { get; set; }
     }

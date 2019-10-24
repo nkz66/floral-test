@@ -22,14 +22,14 @@ namespace Floral.Models
         public bool isPackage { get; set; }
         public int supplierId { get; set; }
         public int packageId { get; set; }
-        public Supplier supplier { get; set; }
-        public FlowerPackage flowerPackage { get; set; }
-        public List<Inventory> Inventories { get; set; }
+        public Supplier Supplier { get; set; }
+        public FlowerPackage FlowerPackage { get; set; }
+        public List<Inventory> Inventory { get; set; }
         public List<ItemMmItemGroup> ItemMmItemGroups { get; set; }
-        public List<PackageItem> packageItems { get; set; }
-        public List<ItemTag> itemTags { get; set; }
-        public List<OrderItem> orderItems { get; set; }
-        public List<ShoppingCardItem> shoppingCardItems { get; set; }
+        public List<PackageItem> PackageItems { get; set; }
+        public List<ItemTag> ItemTags { get; set; }
+        public List<OrderItem> OrderItems { get; set; }
+        public List<ShoppingCardItem> ShoppingCardItems { get; set; }
         public DateTimeOffset createDateTime { get; set; }
         public DateTimeOffset updateDateTime { get; set; }
         

@@ -12,6 +12,6 @@ namespace Floral.Models
         public int inOrOut{ get; set; }
         public DateTimeOffset createDateTime { get; set; }
         public DateTimeOffset updateDateTime { get; set; }
-        public List<Inventory>inventories{get;set;}
+        public List<Inventory>Inventory{get;set;}
     }
 }

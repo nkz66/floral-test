@@ -12,7 +12,7 @@ namespace Floral.Models
             public string password{ get; set; }
             public string email{ get; set; }
             public string phoneNumber{ get; set; }
-            public List<Delivery>deliveries{ get; set; }
+            public List<Delivery>delivery{ get; set; }
             public DateTimeOffset createTime { get; set; }
             public DateTimeOffset updateTime { get; set; }
     }
