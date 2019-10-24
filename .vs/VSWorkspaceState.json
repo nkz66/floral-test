@@ -1,8 +1,9 @@
 {
   "ExpandedNodes": [
     "",
-    "\\Models"
+    "\\Data",
+    "\\Views"
   ],
-  "SelectedNode": "\\Models\\Item.cs",
+  "SelectedNode": "\\Floral.sln",
   "PreviewInSolutionExplorer": false
 }

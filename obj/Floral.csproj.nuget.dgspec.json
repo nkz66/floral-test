@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\keatkeat\\my projects\\asp.net core\\2.2\\floral-test\\Floral.csproj": {}
+    "D:\\asp.net\\Floral\\Floral.csproj": {}
   },
   "projects": {
-    "C:\\keatkeat\\my projects\\asp.net core\\2.2\\floral-test\\Floral.csproj": {
+    "D:\\asp.net\\Floral\\Floral.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\keatkeat\\my projects\\asp.net core\\2.2\\floral-test\\Floral.csproj",
+        "projectUniqueName": "D:\\asp.net\\Floral\\Floral.csproj",
         "projectName": "Floral",
-        "projectPath": "C:\\keatkeat\\my projects\\asp.net core\\2.2\\floral-test\\Floral.csproj",
-        "packagesPath": "C:\\Users\\keatk\\.nuget\\packages\\",
-        "outputPath": "C:\\keatkeat\\my projects\\asp.net core\\2.2\\floral-test\\obj\\",
+        "projectPath": "D:\\asp.net\\Floral\\Floral.csproj",
+        "packagesPath": "C:\\Users\\ngkah\\.nuget\\packages\\",
+        "outputPath": "D:\\asp.net\\Floral\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\keatk\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\ngkah\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
