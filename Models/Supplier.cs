@@ -8,7 +8,7 @@ namespace Floral.Models
     public class Supplier
     {
         public int Id { get; set; }
-        public string  campanyName { get; set; }
+        public string campanyName { get; set; }
         public string phoneNum { get; set; }
         public string address { get; set; }
         public string email { get; set; }

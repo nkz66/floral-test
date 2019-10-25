@@ -10,10 +10,10 @@ namespace Floral.Models
 
         public int Id { get; set; }
         public long remark { get; set; }
-        public DateTime date { get; set; }
         public int quantity { get; set; }
         public int stock { get; set; }
         public int inventoryStatusId{get;set;}
+        public InventoryStatus InventoryStatus { get; set; }
         public int itemId{get;set;}
         public Item Item { get; set; }
         public DateTimeOffset createDateTime { get; set; }

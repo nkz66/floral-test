@@ -10,6 +10,7 @@ namespace Floral.Models
         public int Id{ get; set; }
         public int PackageTypeId{ get; set; }
         public  PackageType packageType{ get; set; }  
+        public Item Item { get; set; }
         public List<PackageItem>packageItem{ get; set; }
         public List<FlowerQuantityOrSize>FlowerQuantityOrSize{ get; set; }
         public DateTimeOffset createDateTime { get; set; }

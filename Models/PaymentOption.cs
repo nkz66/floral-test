@@ -9,6 +9,7 @@ namespace Floral.Models
     {
         public int Id{ get; set; }
         public string name{ get; set; }
+        public Order Order { get; set; }
         public DateTimeOffset createDateTime { get; set; }
         public DateTimeOffset updateDateTime { get; set; }
     }

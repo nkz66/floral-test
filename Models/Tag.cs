@@ -11,8 +11,8 @@ namespace Floral.Models
         public string name {get;set;}
         public int tagTypeId{get;set;}
         public TagType tagType{get;set;}
-        public List<ItemTag>ItemTags{get;set;}
-        public List<MessageCard>MessageCards{get;set;}
+        public List<ItemTag>ItemTag{get;set;}
+        //public List<MessageCard>MessageCard{get;set;}
         public DateTimeOffset createDateTime { get; set; }
         public DateTimeOffset updateDateTime { get; set; }
     }

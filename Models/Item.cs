@@ -24,12 +24,18 @@ namespace Floral.Models
         public int packageId { get; set; }
         public Supplier Supplier { get; set; }
         public FlowerPackage FlowerPackage { get; set; }
+        //one to one
+        public ShoppingCartItem ShoppingCartItem { get; set; }
+        public OrderItem OrderItem { get; set; }
+        public PackageItem PackageItem { get; set; }
+       // public ItemTag itemTag { get; set; }
+        //one to many
         public List<Inventory> Inventory { get; set; }
         public List<ItemMmItemGroup> ItemMmItemGroups { get; set; }
         public List<PackageItem> PackageItems { get; set; }
         public List<ItemTag> ItemTags { get; set; }
         public List<OrderItem> OrderItems { get; set; }
-        public List<ShoppingCardItem> ShoppingCardItems { get; set; }
+        public List<ShoppingCartItem> ShoppingCardItems { get; set; }
         public DateTimeOffset createDateTime { get; set; }
         public DateTimeOffset updateDateTime { get; set; }
         

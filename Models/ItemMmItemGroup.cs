@@ -9,7 +9,9 @@ namespace Floral.Models
     {
         public int Id { get; set; }
         public Item item { get; set; }
+        public int itemId { get; set; }
         public ItemGroup itemGroup { get; set; }
+        public int itemGroupId { get; set; }
         public DateTimeOffset createDateTime { get; set; }
         public DateTimeOffset updateDateTime { get; set; }
     }

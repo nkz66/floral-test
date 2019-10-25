@@ -9,7 +9,7 @@ namespace Floral.Models
     {
         public int Id{ get; set; }
         public string name { get; set; }
-        public List<Tag>Tags { get; set; }
+        public List<Tag>Tag { get; set; }
         public DateTimeOffset createDateTime { get; set; }
         public DateTimeOffset updateDateTime { get; set; }
     }

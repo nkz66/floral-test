@@ -17,7 +17,7 @@ namespace Floral.Models
         public int messageCardId { get; set; }
         public int paymentOptionId { get; set; }
         public int userId{get;set;}
-        public List<OrderItem> OrderItems { get; set; }
+        public List<OrderItem> OrderItem { get; set; }
         public DateTimeOffset createDateTime { get; set; }
         public DateTimeOffset updateDateTime { get; set; }
     }
