@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Floral.Migrations
 {
     [DbContext(typeof(FloralContext))]
-    [Migration("20191024113201_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20191026165047_FloralMigrations")]
+    partial class FloralMigrations
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -27,28 +27,53 @@ namespace Floral.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("city")
+                        .IsRequired()
+                        .HasMaxLength(300);
+
                     b.Property<DateTimeOffset>("createDateTime");
 
-                    b.Property<int>("deliverTimeId");
+                    b.Property<decimal>("deliveryPrice")
+                        .HasColumnType("decimal(9,2)");
 
-                    b.Property<decimal>("deliveryPrice");
+                    b.Property<DateTimeOffset>("deliveryTime");
 
                     b.Property<int>("driverId");
 
                     b.Property<bool>("isDelivery");
 
-                    b.Property<DateTimeOffset>("updateDateTime");
+                    b.Property<int>("orderId");
 
-                    b.Property<int>("userDeliveryAddressId");
+                    b.Property<string>("postcode")
+                        .IsRequired()
+                        .HasMaxLength(300);
+
+                    b.Property<string>("recipient")
+                        .IsRequired()
+                        .HasMaxLength(300);
+
+                    b.Property<string>("recipientPhoneNumber")
+                        .IsRequired()
+                        .HasMaxLength(300);
+
+                    b.Property<string>("state")
+                        .IsRequired()
+                        .HasMaxLength(300);
+
+                    b.Property<string>("streetAddress")
+                        .IsRequired()
+                        .HasMaxLength(700);
+
+                    b.Property<DateTimeOffset>("updateDateTime");
 
                     b.HasKey("Id");
 
                     b.HasIndex("driverId");
 
-                    b.HasIndex("userDeliveryAddressId")
+                    b.HasIndex("orderId")
                         .IsUnique();
 
-                    b.ToTable("Delivery");
+                    b.ToTable("delivery");
                 });
 
             modelBuilder.Entity("Floral.Models.DeliveryTime", b =>
@@ -59,15 +84,18 @@ namespace Floral.Migrations
 
                     b.Property<DateTimeOffset>("createDateTime");
 
-                    b.Property<string>("name");
+                    b.Property<string>("name")
+                        .IsRequired()
+                        .HasMaxLength(300);
 
-                    b.Property<decimal>("price");
+                    b.Property<decimal>("price")
+                        .HasColumnType("decimal(9,2)");
 
                     b.Property<DateTimeOffset>("updateDateTime");
 
                     b.HasKey("Id");
 
-                    b.ToTable("DeliveryTime");
+                    b.ToTable("deliveryTime");
                 });
 
             modelBuilder.Entity("Floral.Models.Driver", b =>
@@ -76,21 +104,29 @@ namespace Floral.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<DateTimeOffset>("createTime");
+                    b.Property<DateTimeOffset>("createDateTime");
 
-                    b.Property<string>("email");
+                    b.Property<string>("email")
+                        .IsRequired()
+                        .HasMaxLength(300);
 
-                    b.Property<string>("name");
+                    b.Property<string>("name")
+                        .IsRequired()
+                        .HasMaxLength(300);
 
-                    b.Property<string>("password");
+                    b.Property<string>("password")
+                        .IsRequired()
+                        .HasMaxLength(300);
 
-                    b.Property<string>("phoneNumber");
+                    b.Property<string>("phoneNumber")
+                        .IsRequired()
+                        .HasMaxLength(300);
 
-                    b.Property<DateTimeOffset>("updateTime");
+                    b.Property<DateTimeOffset>("updateDateTime");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Driver");
+                    b.ToTable("driver");
                 });
 
             modelBuilder.Entity("Floral.Models.FlowerPackage", b =>
@@ -109,7 +145,7 @@ namespace Floral.Migrations
 
                     b.HasIndex("PackageTypeId");
 
-                    b.ToTable("FlowerPackage");
+                    b.ToTable("flowerPackage");
                 });
 
             modelBuilder.Entity("Floral.Models.FlowerQuantityOrSize", b =>
@@ -121,8 +157,6 @@ namespace Floral.Migrations
                     b.Property<int>("PackageId");
 
                     b.Property<DateTimeOffset>("createDateTime");
-
-                    b.Property<int?>("flowerPackageId");
 
                     b.Property<bool>("isQuantity");
 
@@ -136,9 +170,9 @@ namespace Floral.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("flowerPackageId");
+                    b.HasIndex("PackageId");
 
-                    b.ToTable("FlowerQuantityOrSize");
+                    b.ToTable("flowerQuantityOrSize");
                 });
 
             modelBuilder.Entity("Floral.Models.Inventory", b =>
@@ -149,15 +183,14 @@ namespace Floral.Migrations
 
                     b.Property<DateTimeOffset>("createDateTime");
 
-                    b.Property<DateTime>("date");
-
                     b.Property<int>("inventoryStatusId");
 
                     b.Property<int>("itemId");
 
                     b.Property<int>("quantity");
 
-                    b.Property<long>("remark");
+                    b.Property<long>("remark")
+                        .HasMaxLength(300);
 
                     b.Property<int>("stock");
 
@@ -169,7 +202,7 @@ namespace Floral.Migrations
 
                     b.HasIndex("itemId");
 
-                    b.ToTable("Inventory");
+                    b.ToTable("inventory");
                 });
 
             modelBuilder.Entity("Floral.Models.InventoryStatus", b =>
@@ -182,13 +215,15 @@ namespace Floral.Migrations
 
                     b.Property<int>("inOrOut");
 
-                    b.Property<string>("statusName");
+                    b.Property<string>("statusName")
+                        .IsRequired()
+                        .HasMaxLength(300);
 
                     b.Property<DateTimeOffset>("updateDateTime");
 
                     b.HasKey("Id");
 
-                    b.ToTable("InventoryStatus");
+                    b.ToTable("inventoryStatus");
                 });
 
             modelBuilder.Entity("Floral.Models.Item", b =>
@@ -197,19 +232,25 @@ namespace Floral.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("code");
+                    b.Property<string>("code")
+                        .IsRequired()
+                        .HasMaxLength(300);
 
-                    b.Property<decimal>("cost");
+                    b.Property<decimal>("cost")
+                        .HasColumnType("decimal(9,2)");
 
                     b.Property<DateTimeOffset>("createDateTime");
 
-                    b.Property<string>("description");
+                    b.Property<string>("description")
+                        .IsRequired()
+                        .HasMaxLength(500);
 
-                    b.Property<decimal>("discount");
+                    b.Property<decimal>("discount")
+                        .HasColumnType("decimal(9,2)");
 
-                    b.Property<int?>("flowerPackageId");
-
-                    b.Property<string>("image");
+                    b.Property<string>("image")
+                        .IsRequired()
+                        .HasMaxLength(500);
 
                     b.Property<bool>("isPackage");
 
@@ -219,11 +260,14 @@ namespace Floral.Migrations
 
                     b.Property<bool>("isTag");
 
-                    b.Property<string>("name");
+                    b.Property<string>("name")
+                        .IsRequired()
+                        .HasMaxLength(300);
 
                     b.Property<int>("packageId");
 
-                    b.Property<decimal>("sellingPrice");
+                    b.Property<decimal>("sellingPrice")
+                        .HasColumnType("decimal(9,2)");
 
                     b.Property<int>("stock");
 
@@ -233,11 +277,16 @@ namespace Floral.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("flowerPackageId");
+                    b.HasIndex("code");
+
+                    b.HasIndex("name");
+
+                    b.HasIndex("packageId")
+                        .IsUnique();
 
                     b.HasIndex("supplierId");
 
-                    b.ToTable("Item");
+                    b.ToTable("item");
                 });
 
             modelBuilder.Entity("Floral.Models.ItemGroup", b =>
@@ -248,13 +297,15 @@ namespace Floral.Migrations
 
                     b.Property<DateTimeOffset>("createDateTime");
 
-                    b.Property<string>("name");
+                    b.Property<string>("name")
+                        .IsRequired()
+                        .HasMaxLength(300);
 
                     b.Property<DateTimeOffset>("updateDateTime");
 
                     b.HasKey("Id");
 
-                    b.ToTable("ItemGroup");
+                    b.ToTable("itemGroup");
                 });
 
             modelBuilder.Entity("Floral.Models.ItemMmItemGroup", b =>
@@ -265,9 +316,9 @@ namespace Floral.Migrations
 
                     b.Property<DateTimeOffset>("createDateTime");
 
-                    b.Property<int?>("itemGroupId");
+                    b.Property<int>("itemGroupId");
 
-                    b.Property<int?>("itemId");
+                    b.Property<int>("itemId");
 
                     b.Property<DateTimeOffset>("updateDateTime");
 
@@ -277,7 +328,7 @@ namespace Floral.Migrations
 
                     b.HasIndex("itemId");
 
-                    b.ToTable("ItemMmItemGroup");
+                    b.ToTable("itemMmItemGroup");
                 });
 
             modelBuilder.Entity("Floral.Models.ItemTag", b =>
@@ -300,7 +351,7 @@ namespace Floral.Migrations
 
                     b.HasIndex("tagId");
 
-                    b.ToTable("ItemTag");
+                    b.ToTable("itemTag");
                 });
 
             modelBuilder.Entity("Floral.Models.MessageCard", b =>
@@ -309,23 +360,30 @@ namespace Floral.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("TagId");
-
                     b.Property<DateTimeOffset>("createDateTime");
 
-                    b.Property<string>("message");
+                    b.Property<string>("message")
+                        .IsRequired()
+                        .HasMaxLength(500);
 
-                    b.Property<string>("place");
+                    b.Property<int>("orderId");
 
-                    b.Property<string>("recipient");
+                    b.Property<string>("place")
+                        .IsRequired()
+                        .HasMaxLength(300);
+
+                    b.Property<string>("recipient")
+                        .IsRequired()
+                        .HasMaxLength(300);
 
                     b.Property<DateTimeOffset>("updateDateTime");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("TagId");
+                    b.HasIndex("orderId")
+                        .IsUnique();
 
-                    b.ToTable("MessageCard");
+                    b.ToTable("messageCard");
                 });
 
             modelBuilder.Entity("Floral.Models.Order", b =>
@@ -336,13 +394,10 @@ namespace Floral.Migrations
 
                     b.Property<DateTimeOffset>("createDateTime");
 
-                    b.Property<int>("deliveryId");
+                    b.Property<int>("orderStatus");
 
-                    b.Property<int>("messageCardId");
-
-                    b.Property<int>("paymentOptionId");
-
-                    b.Property<decimal>("totalPrice");
+                    b.Property<decimal>("totalPrice")
+                        .HasColumnType("decimal(9,2)");
 
                     b.Property<DateTimeOffset>("updateDateTime");
 
@@ -350,15 +405,9 @@ namespace Floral.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("deliveryId");
-
-                    b.HasIndex("messageCardId");
-
-                    b.HasIndex("paymentOptionId");
-
                     b.HasIndex("userId");
 
-                    b.ToTable("Order");
+                    b.ToTable("order");
                 });
 
             modelBuilder.Entity("Floral.Models.OrderItem", b =>
@@ -373,7 +422,8 @@ namespace Floral.Migrations
 
                     b.Property<int>("orderId");
 
-                    b.Property<decimal>("price");
+                    b.Property<decimal>("price")
+                        .HasColumnType("decimal(9,2)");
 
                     b.Property<int>("quantity");
 
@@ -381,11 +431,12 @@ namespace Floral.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("itemId");
+                    b.HasIndex("itemId")
+                        .IsUnique();
 
                     b.HasIndex("orderId");
 
-                    b.ToTable("OrderItem");
+                    b.ToTable("orderItem");
                 });
 
             modelBuilder.Entity("Floral.Models.PackageItem", b =>
@@ -406,9 +457,10 @@ namespace Floral.Migrations
 
                     b.HasIndex("flowerPackageId");
 
-                    b.HasIndex("itemId");
+                    b.HasIndex("itemId")
+                        .IsUnique();
 
-                    b.ToTable("PackageItem");
+                    b.ToTable("packageItem");
                 });
 
             modelBuilder.Entity("Floral.Models.PackageType", b =>
@@ -419,13 +471,15 @@ namespace Floral.Migrations
 
                     b.Property<DateTimeOffset>("createDateTime");
 
-                    b.Property<string>("name");
+                    b.Property<string>("name")
+                        .IsRequired()
+                        .HasMaxLength(300);
 
                     b.Property<DateTimeOffset>("updateDateTime");
 
                     b.HasKey("Id");
 
-                    b.ToTable("PackageType");
+                    b.ToTable("packageType");
                 });
 
             modelBuilder.Entity("Floral.Models.PaymentOption", b =>
@@ -436,16 +490,23 @@ namespace Floral.Migrations
 
                     b.Property<DateTimeOffset>("createDateTime");
 
-                    b.Property<string>("name");
+                    b.Property<string>("name")
+                        .IsRequired()
+                        .HasMaxLength(300);
+
+                    b.Property<int>("orderId");
 
                     b.Property<DateTimeOffset>("updateDateTime");
 
                     b.HasKey("Id");
 
-                    b.ToTable("PaymentOption");
+                    b.HasIndex("orderId")
+                        .IsUnique();
+
+                    b.ToTable("paymentOption");
                 });
 
-            modelBuilder.Entity("Floral.Models.ShoppingCard", b =>
+            modelBuilder.Entity("Floral.Models.ShoppingCart", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -461,16 +522,14 @@ namespace Floral.Migrations
 
                     b.HasIndex("userId");
 
-                    b.ToTable("ShoppingCard");
+                    b.ToTable("shoppingCart");
                 });
 
-            modelBuilder.Entity("Floral.Models.ShoppingCardItem", b =>
+            modelBuilder.Entity("Floral.Models.ShoppingCartItem", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int?>("ShoppingCardId");
 
                     b.Property<DateTimeOffset>("createDateTime");
 
@@ -478,15 +537,18 @@ namespace Floral.Migrations
 
                     b.Property<int>("quantity");
 
+                    b.Property<int>("shoppingCartId");
+
                     b.Property<DateTimeOffset>("updateDateTime");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ShoppingCardId");
+                    b.HasIndex("itemId")
+                        .IsUnique();
 
-                    b.HasIndex("itemId");
+                    b.HasIndex("shoppingCartId");
 
-                    b.ToTable("ShoppingCardItem");
+                    b.ToTable("shoppingCartItem");
                 });
 
             modelBuilder.Entity("Floral.Models.Supplier", b =>
@@ -495,29 +557,47 @@ namespace Floral.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("address");
+                    b.Property<string>("address")
+                        .IsRequired()
+                        .HasMaxLength(300);
 
-                    b.Property<string>("bank");
+                    b.Property<string>("bank")
+                        .IsRequired()
+                        .HasMaxLength(300);
 
-                    b.Property<string>("bankAcc");
+                    b.Property<string>("bankAcc")
+                        .IsRequired()
+                        .HasMaxLength(300);
 
-                    b.Property<string>("campanyName");
+                    b.Property<string>("campanyName")
+                        .IsRequired()
+                        .HasMaxLength(300);
 
                     b.Property<DateTimeOffset>("createDateTime");
 
-                    b.Property<string>("email");
+                    b.Property<string>("email")
+                        .IsRequired()
+                        .HasMaxLength(300);
 
-                    b.Property<string>("phoneNum");
+                    b.Property<string>("phoneNum")
+                        .IsRequired()
+                        .HasMaxLength(300);
 
-                    b.Property<string>("remark");
+                    b.Property<string>("remark")
+                        .IsRequired()
+                        .HasMaxLength(500);
 
                     b.Property<DateTimeOffset>("updateDateTime");
 
-                    b.Property<string>("website");
+                    b.Property<string>("website")
+                        .IsRequired()
+                        .HasMaxLength(300);
 
                     b.HasKey("Id");
 
-                    b.ToTable("Supplier");
+                    b.HasIndex("campanyName");
+
+                    b.ToTable("supplier");
                 });
 
             modelBuilder.Entity("Floral.Models.Tag", b =>
@@ -528,7 +608,9 @@ namespace Floral.Migrations
 
                     b.Property<DateTimeOffset>("createDateTime");
 
-                    b.Property<string>("name");
+                    b.Property<string>("name")
+                        .IsRequired()
+                        .HasMaxLength(300);
 
                     b.Property<int>("tagTypeId");
 
@@ -538,7 +620,7 @@ namespace Floral.Migrations
 
                     b.HasIndex("tagTypeId");
 
-                    b.ToTable("Tag");
+                    b.ToTable("tag");
                 });
 
             modelBuilder.Entity("Floral.Models.TagType", b =>
@@ -549,13 +631,15 @@ namespace Floral.Migrations
 
                     b.Property<DateTimeOffset>("createDateTime");
 
-                    b.Property<string>("name");
+                    b.Property<string>("name")
+                        .IsRequired()
+                        .HasMaxLength(300);
 
                     b.Property<DateTimeOffset>("updateDateTime");
 
                     b.HasKey("Id");
 
-                    b.ToTable("TagType");
+                    b.ToTable("tagType");
                 });
 
             modelBuilder.Entity("Floral.Models.User", b =>
@@ -566,19 +650,29 @@ namespace Floral.Migrations
 
                     b.Property<DateTimeOffset>("createDateTime");
 
-                    b.Property<string>("email");
+                    b.Property<string>("email")
+                        .IsRequired()
+                        .HasMaxLength(300);
 
-                    b.Property<string>("name");
+                    b.Property<string>("name")
+                        .IsRequired()
+                        .HasMaxLength(300);
 
-                    b.Property<string>("password");
+                    b.Property<string>("password")
+                        .IsRequired()
+                        .HasMaxLength(300);
 
-                    b.Property<string>("phoneNumber");
+                    b.Property<string>("phoneNumber")
+                        .IsRequired()
+                        .HasMaxLength(300);
 
                     b.Property<DateTimeOffset>("updateDateTime");
 
                     b.HasKey("Id");
 
-                    b.ToTable("User");
+                    b.HasIndex("name");
+
+                    b.ToTable("user");
                 });
 
             modelBuilder.Entity("Floral.Models.UserDeliveryAddress", b =>
@@ -587,79 +681,97 @@ namespace Floral.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int?>("DeliveryId");
+
                     b.Property<int>("UserId");
 
-                    b.Property<string>("city");
+                    b.Property<string>("city")
+                        .IsRequired()
+                        .HasMaxLength(300);
 
                     b.Property<DateTimeOffset>("createDateTime");
 
-                    b.Property<string>("postcode");
+                    b.Property<string>("postcode")
+                        .IsRequired()
+                        .HasMaxLength(300);
 
-                    b.Property<string>("recipient");
+                    b.Property<string>("recipient")
+                        .IsRequired()
+                        .HasMaxLength(300);
 
-                    b.Property<string>("recipientPhoneNumber");
+                    b.Property<string>("recipientPhoneNumber")
+                        .IsRequired()
+                        .HasMaxLength(300);
 
-                    b.Property<string>("state");
+                    b.Property<string>("state")
+                        .IsRequired()
+                        .HasMaxLength(300);
 
-                    b.Property<string>("streetAddress");
+                    b.Property<string>("streetAddress")
+                        .IsRequired()
+                        .HasMaxLength(700);
 
                     b.Property<DateTimeOffset>("updateDateTime");
 
                     b.HasKey("Id");
 
+                    b.HasIndex("DeliveryId");
+
                     b.HasIndex("UserId");
 
-                    b.ToTable("UserDeliveryAddress");
+                    b.ToTable("userDeliveryAddresses");
                 });
 
             modelBuilder.Entity("Floral.Models.Delivery", b =>
                 {
-                    b.HasOne("Floral.Models.Driver")
-                        .WithMany("deliveries")
+                    b.HasOne("Floral.Models.Driver", "Driver")
+                        .WithMany("Delivery")
                         .HasForeignKey("driverId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("Floral.Models.UserDeliveryAddress")
+                    b.HasOne("Floral.Models.Order", "Order")
                         .WithOne("delivery")
-                        .HasForeignKey("Floral.Models.Delivery", "userDeliveryAddressId")
+                        .HasForeignKey("Floral.Models.Delivery", "orderId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("Floral.Models.FlowerPackage", b =>
                 {
                     b.HasOne("Floral.Models.PackageType", "packageType")
-                        .WithMany("flowerPackages")
+                        .WithMany("FlowerPackage")
                         .HasForeignKey("PackageTypeId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("Floral.Models.FlowerQuantityOrSize", b =>
                 {
-                    b.HasOne("Floral.Models.FlowerPackage", "flowerPackage")
-                        .WithMany("FlowerQuantityOrSizes")
-                        .HasForeignKey("flowerPackageId");
+                    b.HasOne("Floral.Models.FlowerPackage", "FlowerPackage")
+                        .WithMany("FlowerQuantityOrSize")
+                        .HasForeignKey("PackageId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("Floral.Models.Inventory", b =>
                 {
-                    b.HasOne("Floral.Models.InventoryStatus")
-                        .WithMany("inventories")
+                    b.HasOne("Floral.Models.InventoryStatus", "InventoryStatus")
+                        .WithMany("Inventory")
                         .HasForeignKey("inventoryStatusId")
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("Floral.Models.Item", "Item")
-                        .WithMany("Inventories")
+                        .WithMany("Inventory")
                         .HasForeignKey("itemId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("Floral.Models.Item", b =>
                 {
-                    b.HasOne("Floral.Models.FlowerPackage", "flowerPackage")
-                        .WithMany()
-                        .HasForeignKey("flowerPackageId");
+                    b.HasOne("Floral.Models.FlowerPackage", "FlowerPackage")
+                        .WithOne("Item")
+                        .HasForeignKey("Floral.Models.Item", "packageId")
+                        .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("Floral.Models.Supplier", "supplier")
+                    b.HasOne("Floral.Models.Supplier", "Supplier")
                         .WithMany("Item")
                         .HasForeignKey("supplierId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -669,52 +781,40 @@ namespace Floral.Migrations
                 {
                     b.HasOne("Floral.Models.ItemGroup", "itemGroup")
                         .WithMany("ItemMmItemGroups")
-                        .HasForeignKey("itemGroupId");
+                        .HasForeignKey("itemGroupId")
+                        .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("Floral.Models.Item", "item")
                         .WithMany("ItemMmItemGroups")
-                        .HasForeignKey("itemId");
+                        .HasForeignKey("itemId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("Floral.Models.ItemTag", b =>
                 {
                     b.HasOne("Floral.Models.Item", "item")
-                        .WithMany("itemTags")
+                        .WithMany("ItemTags")
                         .HasForeignKey("itemId")
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("Floral.Models.Tag", "tag")
-                        .WithMany("ItemTags")
+                        .WithMany("ItemTag")
                         .HasForeignKey("tagId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("Floral.Models.MessageCard", b =>
                 {
-                    b.HasOne("Floral.Models.Tag")
-                        .WithMany("MessageCards")
-                        .HasForeignKey("TagId");
+                    b.HasOne("Floral.Models.Order", "Order")
+                        .WithOne("messageCard")
+                        .HasForeignKey("Floral.Models.MessageCard", "orderId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("Floral.Models.Order", b =>
                 {
-                    b.HasOne("Floral.Models.Delivery", "delivery")
-                        .WithMany()
-                        .HasForeignKey("deliveryId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("Floral.Models.MessageCard", "messageCard")
-                        .WithMany()
-                        .HasForeignKey("messageCardId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("Floral.Models.PaymentOption", "paymentOption")
-                        .WithMany()
-                        .HasForeignKey("paymentOptionId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
                     b.HasOne("Floral.Models.User", "user")
-                        .WithMany()
+                        .WithMany("Order")
                         .HasForeignKey("userId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
@@ -722,12 +822,12 @@ namespace Floral.Migrations
             modelBuilder.Entity("Floral.Models.OrderItem", b =>
                 {
                     b.HasOne("Floral.Models.Item", "item")
-                        .WithMany("orderItems")
-                        .HasForeignKey("itemId")
+                        .WithOne("OrderItem")
+                        .HasForeignKey("Floral.Models.OrderItem", "itemId")
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("Floral.Models.Order", "order")
-                        .WithMany("orderItems")
+                        .WithMany("OrderItem")
                         .HasForeignKey("orderId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
@@ -735,48 +835,61 @@ namespace Floral.Migrations
             modelBuilder.Entity("Floral.Models.PackageItem", b =>
                 {
                     b.HasOne("Floral.Models.FlowerPackage", "flowerPackage")
-                        .WithMany("PackageItems")
+                        .WithMany("packageItem")
                         .HasForeignKey("flowerPackageId")
                         .OnDelete(DeleteBehavior.Cascade);
 
                     b.HasOne("Floral.Models.Item", "item")
-                        .WithMany("packageItems")
-                        .HasForeignKey("itemId")
+                        .WithOne("PackageItem")
+                        .HasForeignKey("Floral.Models.PackageItem", "itemId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("Floral.Models.ShoppingCard", b =>
+            modelBuilder.Entity("Floral.Models.PaymentOption", b =>
+                {
+                    b.HasOne("Floral.Models.Order", "Order")
+                        .WithOne("paymentOption")
+                        .HasForeignKey("Floral.Models.PaymentOption", "orderId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("Floral.Models.ShoppingCart", b =>
                 {
                     b.HasOne("Floral.Models.User", "user")
-                        .WithMany()
+                        .WithMany("ShoppingCart")
                         .HasForeignKey("userId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("Floral.Models.ShoppingCardItem", b =>
+            modelBuilder.Entity("Floral.Models.ShoppingCartItem", b =>
                 {
-                    b.HasOne("Floral.Models.ShoppingCard", "ShoppingCard")
-                        .WithMany("shoppingCardItems")
-                        .HasForeignKey("ShoppingCardId");
+                    b.HasOne("Floral.Models.Item", "Item")
+                        .WithOne("ShoppingCartItem")
+                        .HasForeignKey("Floral.Models.ShoppingCartItem", "itemId")
+                        .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("Floral.Models.Item", "item")
-                        .WithMany("shoppingCardItems")
-                        .HasForeignKey("itemId")
+                    b.HasOne("Floral.Models.ShoppingCart", "ShoppingCart")
+                        .WithMany("ShoppingCartItem")
+                        .HasForeignKey("shoppingCartId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("Floral.Models.Tag", b =>
                 {
                     b.HasOne("Floral.Models.TagType", "tagType")
-                        .WithMany("tags")
+                        .WithMany("Tag")
                         .HasForeignKey("tagTypeId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("Floral.Models.UserDeliveryAddress", b =>
                 {
-                    b.HasOne("Floral.Models.User")
-                        .WithMany("userDeliveryAddresses")
+                    b.HasOne("Floral.Models.Delivery", "Delivery")
+                        .WithMany()
+                        .HasForeignKey("DeliveryId");
+
+                    b.HasOne("Floral.Models.User", "User")
+                        .WithMany("UserDeliveryAddress")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });

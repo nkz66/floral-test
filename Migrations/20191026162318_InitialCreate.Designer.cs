@@ -4,14 +4,16 @@ using Floral.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Floral.Migrations
 {
     [DbContext(typeof(FloralContext))]
-    partial class FloralContextModelSnapshot : ModelSnapshot
+    [Migration("20191026162318_InitialCreate")]
+    partial class InitialCreate
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -447,16 +449,11 @@ namespace Floral.Migrations
 
                     b.Property<int>("flowerPackageId");
 
-                    b.Property<int>("itemId");
-
                     b.Property<DateTimeOffset>("updateDateTime");
 
                     b.HasKey("Id");
 
                     b.HasIndex("flowerPackageId");
-
-                    b.HasIndex("itemId")
-                        .IsUnique();
 
                     b.ToTable("packageItem");
                 });
@@ -835,11 +832,6 @@ namespace Floral.Migrations
                     b.HasOne("Floral.Models.FlowerPackage", "flowerPackage")
                         .WithMany("packageItem")
                         .HasForeignKey("flowerPackageId")
-                        .OnDelete(DeleteBehavior.Cascade);
-
-                    b.HasOne("Floral.Models.Item", "item")
-                        .WithOne("PackageItem")
-                        .HasForeignKey("Floral.Models.PackageItem", "itemId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 

@@ -11,6 +11,7 @@ namespace Floral.Models
         public string place{get;set;}
         public string recipient{get; set;}
         public string message{ get; set; }
+        public int orderId { get; set; }
         public Order Order { get; set; }
         public DateTimeOffset createDateTime { get; set; }
         public DateTimeOffset updateDateTime { get; set; }
