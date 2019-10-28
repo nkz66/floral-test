@@ -1,0 +1,43 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model IEnumerable<Floral.Models.Supplier>
+@{
+    ViewData["Title"] = "Supplier Home";
+}
+
+
+<h1>supplier Home</h1>
+<p>
+    <a asp-controller="Supplier" asp-action="Create">create Supplier</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>No.</th>
+            <th>Supplier Name</th>
+            <th>Phone Number</th>
+            <th>Email</th>
+            <th>Function</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var supplier in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => supplier.Id)</td>
+                <td>@Html.DisplayFor(modelItem => supplier.campanyName)</td>
+                <td>@Html.DisplayFor(modelItem => supplier.phoneNum)</td>
+                <td>@Html.DisplayFor(modelItem => supplier.email)</td>
+                <td>
+                    <a asp-route-id="@supplier.Id">Edit</a>
+                    <a asp-route-id="@supplier.Id">detail</a>
+                    <a asp-route-id="@supplier.Id">delete</a>
+
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+

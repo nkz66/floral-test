@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -10,6 +12,8 @@ namespace Floral.Models
         public int Id { get; set; }
         public string campanyName { get; set; }
         public string phoneNum { get; set; }
+        
+        [Display(Name = "Address" )]
         public string address { get; set; }
         public string email { get; set; }
         public string website { get; set; }

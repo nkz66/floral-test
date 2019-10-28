@@ -30,3 +30,6 @@ D:\asp.net\Floral\obj\Debug\netcoreapp2.2\Floral.Views.pdb
 D:\asp.net\Floral\obj\Debug\netcoreapp2.2\Floral.dll
 D:\asp.net\Floral\obj\Debug\netcoreapp2.2\Floral.pdb
 D:\asp.net\Floral\obj\Debug\netcoreapp2.2\Floral.csproj.CopyComplete
+D:\asp.net\Floral\obj\Debug\netcoreapp2.2\Razor\Views\Supplier\Create.cshtml.g.cs
+D:\asp.net\Floral\obj\Debug\netcoreapp2.2\Razor\Views\Supplier\Index.cshtml.g.cs
+D:\asp.net\Floral\obj\Debug\netcoreapp2.2\Razor\Views\Supplier\Edit.cshtml.g.cs
