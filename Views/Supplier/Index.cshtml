@@ -31,9 +31,9 @@
                 <td>@Html.DisplayFor(modelItem => supplier.phoneNum)</td>
                 <td>@Html.DisplayFor(modelItem => supplier.email)</td>
                 <td>
-                    <a asp-route-id="@supplier.Id">Edit</a>
-                    <a asp-route-id="@supplier.Id">detail</a>
-                    <a asp-route-id="@supplier.Id">delete</a>
+                    <a asp-controller="Supplier" asp-action="Edit" asp-route-id="@supplier.Id">Edit</a>
+                    <a asp-controller="Supplier" asp-action="Detail" asp-route-id="@supplier.Id">detail</a>
+                    <a asp-controller="Supplier" asp-action="Delete" asp-route-id="@supplier.Id">delete</a>
 
                 </td>
             </tr>
