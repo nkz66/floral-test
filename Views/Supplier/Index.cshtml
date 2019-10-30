@@ -9,16 +9,28 @@
 
 <h1>supplier Home</h1>
 <p>
-    <a asp-controller="Supplier" asp-action="Create">create Supplier</a>
+    <a asp-controller="Supplier" asp-action="Create" class="btn btn-primary">create</a>
+    <hr />
 </p>
+
+
+<form asp-action="Index" method="get">
+    <div class="form-actions no-color">
+        <p>
+            Find by name: <input type="text" name="SearchString" value="@ViewData["currentFilter"]" />
+            <input type="submit" value="Search"  class="btn btn-primary" /> |
+            <a  asp-action="Index">Back to Full List</a>
+        </p>
+    </div>
+</form>
 
 <table class="table">
     <thead>
         <tr>
             <th>No.</th>
-            <th>Supplier Name</th>
+            <th><a asp-action="Index" asp-route-sortOrder="@ViewData["SupplierNameSortParm"]">Supplier Name</a></th>
             <th>Phone Number</th>
-            <th>Email</th>
+            <th>Email</th>                   <!--定义url的parameter-->
             <th>Function</th>
         </tr>
     </thead>
@@ -31,9 +43,9 @@
                 <td>@Html.DisplayFor(modelItem => supplier.phoneNum)</td>
                 <td>@Html.DisplayFor(modelItem => supplier.email)</td>
                 <td>
-                    <a asp-controller="Supplier" asp-action="Edit" asp-route-id="@supplier.Id">Edit</a>
-                    <a asp-controller="Supplier" asp-action="Detail" asp-route-id="@supplier.Id">detail</a>
-                    <a asp-controller="Supplier" asp-action="Delete" asp-route-id="@supplier.Id">delete</a>
+                    <a asp-controller="Supplier" asp-action="Edit" asp-route-id="@supplier.Id" class="btn btn-primary">Edit</a>&nbsp;
+                    <a asp-controller="Supplier" asp-action="Detail" asp-route-id="@supplier.Id" class="btn btn-success">detail</a>&nbsp;
+                    <a asp-controller="Supplier" asp-action="Delete" asp-route-id="@supplier.Id" class="btn btn-danger">delete</a>&nbsp;
 
                 </td>
             </tr>
