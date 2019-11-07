@@ -35,7 +35,7 @@ namespace Floral
             services.AddDbContext<FloralContext>(options =>
             options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+           // services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);

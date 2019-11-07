@@ -71,7 +71,6 @@ namespace Floral.Data
             modelBuilder.Entity<Item>().Property(i => i.isPackage).IsRequired(true);
             modelBuilder.Entity<Item>().Property(i => i.isStock).IsRequired(true);
             modelBuilder.Entity<Item>().HasOne(i => i.Supplier).WithMany(s => s.Item).HasForeignKey(i => i.supplierId);
-            modelBuilder.Entity<Item>().HasOne(i => i.FlowerPackage).WithOne(p => p.Item).HasForeignKey<Item>(i => i.packageId);
             //modelBuilder.Entity<Item>().HasOne(i => i.ShoppingCartItem).WithOne(s => s.Item).HasForeignKey<ShoppingCartItem>(c => c.itemId);
             //modelBuilder.Entity<Item>().HasOne(i => i.OrderItem).WithOne(o => o.item).HasForeignKey<OrderItem>(o => o.itemId);
             //modelBuilder.Entity<Item>().HasOne(i => i.PackageItem).WithOne(p => p.item).HasForeignKey<PackageItem>(p => p.itemId);
@@ -120,6 +119,7 @@ namespace Floral.Data
             //package item
             //modelBuilder.Entity<PackageItem>().HasKey(p => p.Id);
             //modelBuilder.Entity<PackageItem>().HasOne(p => p.item).WithOne(i => i.PackageItem).HasForeignKey<PackageItem>(p => p.itemId).OnDelete(DeleteBehavior.Cascade);
+            modelBuilder.Entity<PackageItem>().Property(p => p.itemId).IsRequired(true);
             modelBuilder.Entity<PackageItem>().HasOne(p => p.flowerPackage).WithMany(fp => fp.packageItem).HasForeignKey(p => p.flowerPackageId).OnDelete(DeleteBehavior.Cascade);
             modelBuilder.Entity<PackageItem>().Property(i => i.createDateTime).IsRequired(true);
             modelBuilder.Entity<PackageItem>().Property(i => i.updateDateTime).IsRequired(true);
@@ -128,7 +128,7 @@ namespace Floral.Data
             //flower Package
             //modelBuilder.Entity<FlowerPackage>().HasKey(fp => fp.Id);
             modelBuilder.Entity<FlowerPackage>().HasOne(fp => fp.packageType).WithMany(pt => pt.FlowerPackage).HasForeignKey(fp => fp.PackageTypeId);
-            //modelBuilder.Entity<FlowerPackage>().HasOne(fp => fp.Item).WithOne(i => i.FlowerPackage).HasForeignKey<Item>(i => i.packageId);
+            modelBuilder.Entity<FlowerPackage>().HasOne(fp => fp.Item).WithOne(i => i.FlowerPackage).HasForeignKey<FlowerPackage>(fp=>fp.itemId);
             //modelBuilder.Entity<FlowerPackage>().HasMany(fp => fp.packageItem).WithOne();
             //modelBuilder.Entity<FlowerPackage>().HasMany(fp => fp.FlowerQuantityOrSize).WithOne();
             modelBuilder.Entity<FlowerPackage>().Property(i => i.createDateTime).IsRequired(true);

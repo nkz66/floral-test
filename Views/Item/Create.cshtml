@@ -1,0 +1,206 @@
+﻿@model Floral.Models.Item
+
+@{
+    ViewData["Title"] = "Create";
+
+}
+
+<h1>Create</h1>
+
+<h4>Item</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="name" class="control-label"></label>
+                <input asp-for="name" class="form-control" />
+                <span asp-validation-for="name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="code" class="control-label"></label>
+                <input asp-for="code" class="form-control" />
+                <span asp-validation-for="code" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="sellingPrice" class="control-label"></label>
+                <input asp-for="sellingPrice" class="form-control" />
+                <span asp-validation-for="sellingPrice" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="description" class="control-label"></label>
+                <input asp-for="description" class="form-control" />
+                <span asp-validation-for="description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="image" class="control-label"></label>
+                <input asp-for="image" class="form-control" />
+                <span asp-validation-for="image" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="stock" class="control-label"></label>
+                <input asp-for="stock" class="form-control" />
+                <span asp-validation-for="stock" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="cost" class="control-label"></label>
+                <input asp-for="cost" class="form-control" />
+                <span asp-validation-for="cost" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="discount" class="control-label"></label>
+                <input asp-for="discount" class="form-control" />
+                <span asp-validation-for="discount" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Supplier</label>
+                <select asp-for="supplierId" class="form-control" asp-items="ViewBag.supplier"></select>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="isStock" /> @Html.DisplayNameFor(model => model.isStock)
+                </label>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="isSellingItem" /> @Html.DisplayNameFor(model => model.isSellingItem)
+                </label>
+            </div>
+
+            <div class="form-group form-check">
+                <hr />
+                <div class="ItemGroup">
+                    <label class="control-label">Item Group</label>
+                    <div class="col-md-offset-2 col-md-10">
+                        <table>
+                            <tr>
+                                @{
+                                    int lowGroup = 0;
+                                    IEnumerable<Floral.Models.ItemGroup> ItemGroups = ViewBag.ItemGroup;
+
+                                    foreach (var itemGroup in ItemGroups)
+                                    {
+                                        if (lowGroup++ % 3 == 0)
+                                        {
+                                        @:</tr><tr>
+                                        }
+                                        @:<td>
+                                            <input type="checkbox"
+                                                   name="selectedItemGroup"
+                                                   value="@itemGroup.Id" />@itemGroup.name
+                                            @:</td>
+                                        }
+                                    @:</tr>
+                                }
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="form-group form-check">
+                    <hr />
+                    <label class="form-check-label">
+                        <input class="form-check-input tagCheckbox" asp-for="isTag" /> @Html.DisplayNameFor(model => model.isTag)
+                    </label>
+                    <div class="tag">
+                        <label class="control-label">Tag</label>
+                        <div class="col-md-offset-2 col-md-10">
+                            <table>
+                                <tr>
+                                    @{
+                                        int low = 0;
+                                        IEnumerable<Floral.Models.Tag> Tags = ViewBag.Tag;
+
+                                        foreach (var tag in Tags)
+                                        {
+                                            if (low++ % 3 == 0)
+                                            {
+                                            @:</tr><tr>
+                                            }
+                                            @:<td>
+                                                <input type="checkbox"
+                                                       name="selectedTag"
+                                                       value="@tag.Id" />@tag.name
+                                                @:</td>
+                                            }
+                                        @:</tr>
+                                    }
+
+                                </table>
+
+
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-group form-check">
+                        <hr />
+                        <label class="form-check-label">
+                            <input class="form-check-input itemCheckbox" asp-for="isPackage" /> @Html.DisplayNameFor(model => model.isPackage)
+                        </label>
+
+                        <div class="item">
+
+                            <div class="package">
+                                <label class="control-label">Package</label>
+                                <select name="flowerPackage" class="form-control" asp-items="ViewBag.packageType"></select>
+                            </div>
+
+
+
+                            <div class="col-md-offset-2 col-md-10">
+                                <label class="control-label">Item</label>
+                                <table>
+                                    <tr>
+                                        @{
+                                            int lowItem = 0;
+                                            IEnumerable<Floral.Models.Item> Items = ViewBag.Items;
+
+                                            foreach (var item in Items)
+                                            {
+
+                                                if (lowItem++ % 3 == 0)
+                                                {
+                                                @:</tr><tr>
+                                                }
+                                                @:<td>
+                                                    <input type="checkbox"
+                                                           name="selectedItem"
+                                                           value="@item.Id" />@item.name
+                                                    @:</td>
+                                                }
+                                            @:</tr>
+                                        }
+
+                                    </table>
+                                </div>
+                                <input class="form-check-input quantity" type="checkbox" />
+                                  <div class="hasQuantity">
+
+                                  </div>
+
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <input type="submit" value="Create" class="btn btn-primary" />
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div>
+                <a asp-action="Index">Back to List</a>
+            </div>
+            <script>
+
+
+            </script>
+
+            @section Scripts {
+                @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+            }

@@ -1,8 +1,10 @@
 {
   "ExpandedNodes": [
     "",
-    "\\Views"
+    "\\Controllers",
+    "\\Data",
+    "\\Models"
   ],
-  "SelectedNode": "\\appsettings.Development.json",
+  "SelectedNode": "\\Floral.sln",
   "PreviewInSolutionExplorer": false
 }

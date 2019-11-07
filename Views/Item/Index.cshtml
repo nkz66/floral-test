@@ -1,0 +1,125 @@
+﻿@model IEnumerable<Floral.Models.Item>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.code)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.sellingPrice)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.image)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.stock)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.cost)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.discount)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.isSellingItem)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.isTag)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.isStock)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.isPackage)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Supplier)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FlowerPackage)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.createDateTime)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.updateDateTime)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.code)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.sellingPrice)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.image)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.stock)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.cost)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.discount)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.isSellingItem)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.isTag)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.isStock)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.isPackage)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Supplier.address)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FlowerPackage.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.createDateTime)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.updateDateTime)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

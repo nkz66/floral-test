@@ -138,6 +138,7 @@ namespace Floral.Controllers
                     supplier.website = supplierData.website;
                     supplier.bank = supplierData.bank;
                     supplier.bankAcc = supplierData.bankAcc;
+                    supplier.updateDateTime = DateTimeOffset.Now;
                     #endregion
                     await _floralContext.SaveChangesAsync();
                     return RedirectToAction(nameof(Index));

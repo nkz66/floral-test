@@ -21,7 +21,6 @@ namespace Floral.Models
         public bool isStock { get; set; }
         public bool isPackage { get; set; }
         public int supplierId { get; set; }
-        public int packageId { get; set; }
         public Supplier Supplier { get; set; }
         public FlowerPackage FlowerPackage { get; set; }
         //one to one
